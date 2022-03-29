@@ -1,2 +1,2 @@
-# 44-517-Sec02-03-Spark-Go
-### Google Page Rank System project using Go language.
+# 44-517-Sec02-03-Java
+### Google Page Rank System project using Java.
