@@ -28,3 +28,10 @@
 [link to my wiki](https://github.com/jarugulavenkat7/44-517-Sec02-03-Java/wiki/Sai-Kiran-Reddy-Enugala)<br>
 
 [click here for commit history](https://github.com/jarugulavenkat7/44-517-Sec02-03-Java/commits?author=saikiranreddyenugala)
+
+
+## Chandra Bhanu Tata
+
+![My Image](https://avatars.githubusercontent.com/u/77765092?s=400&u=1a9d7763a89bc8244d724df1887295748e5cfc49&v=4)<br>
+[Click here for my wiki](https://github.com/jarugulavenkat7/44-517-Sec02-03-Java/wiki/TATA-CHANDRA-BHANU)<br>
+[Click here to see my commit history](https://github.com/jarugulavenkat7/44-517-Sec02-03-Java/commits?author=tata1141)
