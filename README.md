@@ -13,3 +13,11 @@
 [Click here for my wiki](https://github.com/jarugulavenkat7/44-517-Sec02-03-Java/wiki/Venkat-Sai-Jarugula)<br>
 [Click here to see my commit history](https://github.com/jarugulavenkat7/44-517-Sec02-03-Java/commits?author=jarugulavenkat7)
 
+## Ajay Kumar Reddy Arram
+![my image](https://github.com/jarugulavenkat7/44-517-Sec02-03-Java/blob/main/Images/ajaywapic.jpeg)
+
+
+[link to my wiki](https://github.com/jarugulavenkat7/44-517-Sec02-03-Java/wiki/Ajay-Kumar-Reddy-Arram)
+
+
+[click here to see my commit history](https://github.com/jarugulavenkat7/44-517-Sec02-03-Java/commits?author=ajayarram)
