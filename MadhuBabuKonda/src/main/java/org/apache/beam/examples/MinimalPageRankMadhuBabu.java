@@ -43,7 +43,7 @@ import org.apache.beam.sdk.values.PCollectionList;
 import org.apache.beam.sdk.values.TypeDescriptor;
 import org.apache.beam.sdk.values.TypeDescriptors;
 
-public class RankPage {
+public class MinimalPageRankMadhuBabu {
 
   public static void main(String[] args) {
 
