@@ -15,8 +15,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package org.apache.beam.examples;
-
+package edu.nwmsu.scetion02group03.madhubabu;
 // beam-playground:
 //   name: MinimalWordCount
 //   description: An example that counts words in Shakespeare's works.
@@ -27,7 +26,7 @@ package org.apache.beam.examples;
 //     - Filtering
 //     - IO
 //     - Core Transforms
-
+import edu.nwmsu.scetion02group03.madhubabu.RankPage;
 import java.util.Arrays;
 import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.io.TextIO;
