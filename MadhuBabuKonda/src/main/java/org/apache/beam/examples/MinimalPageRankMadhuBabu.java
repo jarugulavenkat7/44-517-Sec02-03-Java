@@ -26,7 +26,7 @@ package edu.nwmsu.scetion02group03.madhubabu;
 //     - Filtering
 //     - IO
 //     - Core Transforms
-import edu.nwmsu.scetion02group03.madhubabu.RankPage;
+import edu.nwmsu.scetion02group03.madhubabu.MinimalPageRankMadhuBabu;
 import java.util.Arrays;
 import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.io.TextIO;
