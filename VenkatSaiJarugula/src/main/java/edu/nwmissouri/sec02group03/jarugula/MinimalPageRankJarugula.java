@@ -25,7 +25,7 @@ public class MinimalPageRankJarugula {
     Pipeline p = Pipeline.create(options);
     String dataFolder = "web04";
 
-    PCollection<KV<String, String>> pc1 = jarugulaMapper01(p,dataFolder, "go.md", );
+    PCollection<KV<String, String>> pc1 = jarugulaMapper01(p,dataFolder, "go.md" );
     PCollection<KV<String, String>> pc2 = jarugulaMapper01(p, dataFolder,"python.md");
     PCollection<KV<String, String>> pc3 = jarugulaMapper01(p,dataFolder, "java.md");
     PCollection<KV<String, String>> pc4 = jarugulaMapper01(p, dataFolder,"README.md");
