@@ -1,5 +1,7 @@
 # 44-517-Sec02-03-Java
 ### Google Page Rank System project using Java.
+
+It is a big data project to develop google page ranking system using java.
 <hr>
 
 ## Akhil Kasuvojula
