@@ -23,7 +23,13 @@ It is a big data project to develop google page ranking system using java.
 [link to my wiki](https://github.com/jarugulavenkat7/44-517-Sec02-03-Java/wiki/Ajay-Kumar-Reddy-Arram)
 
 
-[click here to see my commit history](https://github.com/jarugulavenkat7/44-517-Sec02-03-Java/commits?author=ajayarram)
+[click here to see my commit history](https://github.com/jarugulavenkat7/44-517-Sec02-03-Java/commits?author=ajayarram) <br>
+
+#### My Contribution <br>
+
+  * Created a folder with my name and updated readMe.
+  * Java Maven Project has been created to find the PageRank.
+  * Custom Java file PageRankArram has been added to find the page rank and also added RankedPageArram and VotingPageArram java files.
 
 ## Sai Kiran Reddy Enugala
 ![Image](https://avatars.githubusercontent.com/u/77818423?s=400&u=606c0785ae89f909e3f02416edb60fe31bc635b6&v=4)<br>
