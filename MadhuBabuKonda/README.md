@@ -14,7 +14,7 @@ Created sample.txt file, Used the shakespeare's connect.
 
 ## Execution
 
-mvn compilr exec.java _D exec.mainClass=edu.nwmsu.section02group03.madhubabu.MinimalPageRankMadhuBabu
+mvn compile exec:java -D exec.mainClass=edu.nwmsu.scetion02group03.madhubabu.MinimalPageRankMadhuBabu
 
 ## Link for Project
 
