@@ -38,6 +38,12 @@ It is a big data project to develop google page ranking system using java.
 
 [click here for commit history](https://github.com/jarugulavenkat7/44-517-Sec02-03-Java/commits?author=saikiranreddyenugala)
 
+### Contribution <br>
+- Created folder in the repo with my name
+- updated ReadMe.
+- created minimalPageRankEnugala.java, rankedPageEnugala.java, votingPageEnugala.java file to find the page rank.
+- compleated job2 by using job1 output. 
+
 
 ## Chandra Bhanu Tata
 
