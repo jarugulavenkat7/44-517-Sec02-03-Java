@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
-import com.google.protobuf.Parser;
-
 import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.io.TextIO;
 import org.apache.beam.sdk.options.PipelineOptions;
@@ -17,6 +15,7 @@ import org.apache.beam.sdk.transforms.FlatMapElements;
 import org.apache.beam.sdk.transforms.Flatten;
 import org.apache.beam.sdk.transforms.GroupByKey;
 import org.apache.beam.sdk.transforms.MapElements;
+import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.KV;
 import org.apache.beam.sdk.values.PCollection;
 import org.apache.beam.sdk.values.PCollectionList;
@@ -25,8 +24,7 @@ import org.apache.beam.sdk.values.TypeDescriptors;
 
 public class MinimalPageRankEnugala {
 
-
-   // DEFINE DOFNS
+  // DEFINE DOFNS
   // ==================================================================
   // You can make your pipeline assembly code less verbose by defining
   // your DoFns statically out-of-line.
@@ -44,7 +42,7 @@ public class MinimalPageRankEnugala {
    * iterative Job 2.
    */
   static class Job1Finalizer extends DoFn<KV<String, Iterable<String>>, KV<String, RankedPageEnugala>> {
-    
+
     @ProcessElement
     public void processElement(@Element KV<String, Iterable<String>> element,
         OutputReceiver<KV<String, RankedPageEnugala>> receiver) {
@@ -61,24 +59,25 @@ public class MinimalPageRankEnugala {
       receiver.output(KV.of(element.getKey(), new RankedPageEnugala(element.getKey(), voters)));
     }
   }
-   static class Job2Mapper extends DoFn<KV<String, RankedPageEnugala>, KV<String, RankedPageEnugala>> {
+
+  static class Job2Mapper extends DoFn<KV<String, RankedPageEnugala>, KV<String, RankedPageEnugala>> {
     @ProcessElement
     public void processElement(@Element KV<String, RankedPageEnugala> element,
-      OutputReceiver<KV<String, RankedPageEnugala>> receiver) {
+        OutputReceiver<KV<String, RankedPageEnugala>> receiver) {
       int votes = 0;
       ArrayList<VotingPageEnugala> voters = element.getValue().getVoterList();
-      if(voters instanceof Collection){
+      if (voters instanceof Collection) {
         votes = ((Collection<VotingPageEnugala>) voters).size();
       }
-      for(VotingPageEnugala vp: voters){
+      for (VotingPageEnugala vp : voters) {
         String pageName = vp.getVoterString();
         double pageRank = vp.getPageRank();
         String contributingPageName = element.getKey();
         double contributingPageRank = element.getValue().getRank();
-        VotingPageEnugala contributor = new VotingPageEnugala(contributingPageName,votes,contributingPageRank);
+        VotingPageEnugala contributor = new VotingPageEnugala(contributingPageName, votes, contributingPageRank);
         ArrayList<VotingPageEnugala> arr = new ArrayList<>();
         arr.add(contributor);
-        receiver.output(KV.of(vp.getVoterString(), new RankedPageEnugala(pageName, pageRank, arr)));        
+        receiver.output(KV.of(vp.getVoterString(), new RankedPageEnugala(pageName, pageRank, arr)));
       }
     }
   }
@@ -86,19 +85,19 @@ public class MinimalPageRankEnugala {
   static class Job2Updater extends DoFn<KV<String, Iterable<RankedPageEnugala>>, KV<String, RankedPageEnugala>> {
     @ProcessElement
     public void processElement(@Element KV<String, Iterable<RankedPageEnugala>> element,
-      OutputReceiver<KV<String, RankedPageEnugala>> receiver) {
-        Double dampingFactor = 0.85;
-        Double updatedRank = (1 - dampingFactor);
-        ArrayList<VotingPageEnugala> newVoters = new ArrayList<>();
-        for(RankedPageEnugala rankPage:element.getValue()){
-          if (rankPage != null) {
-            for(VotingPageEnugala votingPage:rankPage.getVoterList()){
-              newVoters.add(votingPage);
-              updatedRank += (dampingFactor) * votingPage.getPageRank() / (double)votingPage.getContributedVotes();
-            }
+        OutputReceiver<KV<String, RankedPageEnugala>> receiver) {
+      Double dampingFactor = 0.85;
+      Double updatedRank = (1 - dampingFactor);
+      ArrayList<VotingPageEnugala> newVoters = new ArrayList<>();
+      for (RankedPageEnugala rankPage : element.getValue()) {
+        if (rankPage != null) {
+          for (VotingPageEnugala votingPage : rankPage.getVoterList()) {
+            newVoters.add(votingPage);
+            updatedRank += (dampingFactor) * votingPage.getPageRank() / (double) votingPage.getContributedVotes();
           }
         }
-        receiver.output(KV.of(element.getKey(),new RankedPageEnugala(element.getKey(), updatedRank, newVoters)));
+      }
+      receiver.output(KV.of(element.getKey(), new RankedPageEnugala(element.getKey(), updatedRank, newVoters)));
 
     }
 
@@ -110,27 +109,26 @@ public class MinimalPageRankEnugala {
     Pipeline p = Pipeline.create(options);
     String dataFolder = "web04";
 
-    PCollection<KV<String, String>> pc1 = enugalaMapper01(p,dataFolder, "go.md" );
-    PCollection<KV<String, String>> pc2 = enugalaMapper01(p, dataFolder,"python.md");
-    PCollection<KV<String, String>> pc3 = enugalaMapper01(p,dataFolder, "java.md");
-    PCollection<KV<String, String>> pc4 = enugalaMapper01(p, dataFolder,"README.md");
+    PCollection<KV<String, String>> pc1 = enugalaMapper01(p, dataFolder, "go.md");
+    PCollection<KV<String, String>> pc2 = enugalaMapper01(p, dataFolder, "python.md");
+    PCollection<KV<String, String>> pc3 = enugalaMapper01(p, dataFolder, "java.md");
+    PCollection<KV<String, String>> pc4 = enugalaMapper01(p, dataFolder, "README.md");
 
     PCollectionList<KV<String, String>> pCollectionList = PCollectionList.of(pc1).and(pc2).and(pc3).and(pc4);
 
     PCollection<KV<String, String>> mergedList = pCollectionList.apply(Flatten.<KV<String, String>>pCollections());
-    PCollection<KV<String, Iterable<String>>> pCollectionGroupByKey = myMergedList.apply(GroupByKey.create());
+    PCollection<KV<String, Iterable<String>>> pCollectionGroupByKey = mergedList.apply(GroupByKey.create());
 
     PCollection<KV<String, RankedPageEnugala>> job02Input = pCollectionGroupByKey.apply(ParDo.of(new Job1Finalizer()));
 
-    PCollection<KV<String,RankedPageEnugala>> job2Mapper = job02Input.apply(Parser.of(new Job2Mapper()));
+    PCollection<KV<String, RankedPageEnugala>> job2Mapper = job02Input.apply(ParDo.of(new Job2Mapper()));
 
     PCollection<KV<String, RankedPageEnugala>> job02Output = null;
-    PCollection<KV<String,Iterable<RankedPageEnugala>>> job02MapperGroupbkey = job2Mapper.apply(GroupByKey.create());
+    PCollection<KV<String, Iterable<RankedPageEnugala>>> job02MapperGroupbkey = job2Mapper.apply(GroupByKey.create());
 
     job02Output = job02MapperGroupbkey.apply(ParDo.of(new Job2Updater()));
 
     job02MapperGroupbkey = job02Output.apply(GroupByKey.create());
-
 
     PCollection<String> pLinksStr = job02Output.apply(
         MapElements.into(

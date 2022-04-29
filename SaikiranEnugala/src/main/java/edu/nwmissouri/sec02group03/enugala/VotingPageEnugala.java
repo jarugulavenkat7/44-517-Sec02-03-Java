@@ -5,7 +5,7 @@ import org.apache.beam.sdk.values.KV;
 
 public class VotingPageEnugala extends DoFn<KV<String,Iterable<String>>,KV<String,RankedPageEnugala>> implements Serializable{
 
-		// TODO Auto-generated constructor stub
+		
 		String voterString;
         int contributedVotes;
         double pageRank = 1.0;
