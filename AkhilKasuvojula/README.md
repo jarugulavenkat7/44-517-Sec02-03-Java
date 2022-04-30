@@ -13,3 +13,6 @@ mvn compile exec:java -D exec.mainClass=edu.nwmissouri.sec02group03.kasuvojula.M
 * Thank you Dr.Case for helping us learn how the google page rank project works.
 
 * I thank Pramod Gonegari and Venkatesh Vemula for helping me in completing the project, especially for Job 2 and Job 3.
+
+
+My commits link : https://github.com/jarugulavenkat7/44-517-Sec02-03-Java/commits?author=akhilkasuvojula 
